@@ -10,6 +10,7 @@ import { ProductAddComponent } from './components/product-add/product-add.compon
 import {FormsModule} from "@angular/forms";
 import {ToastrModule} from "ngx-toastr";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -33,6 +34,8 @@ const routes: Routes = [
     ToastrModule.forRoot(),
     BrowserModule,
     BrowserAnimationsModule,
+    SweetAlert2Module.forRoot()
+
   ],
   providers: [
     //httpClientModule deprecado
