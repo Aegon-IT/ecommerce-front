@@ -13,7 +13,7 @@
     <li class="breadcrumb-item active">Ver Productos</li>
   </ol>
 
-  <a class="btn btn-primary" routerLink="/admin/product/addproduct"> Crear Producto</a>
+  <a class="btn btn-primary" routerLink="/admin/product/productadd"> Crear Producto</a>
   <h2>Productos</h2>
   <table class="table">
     <thead>
@@ -32,8 +32,8 @@
       <td>{{p.name}}</td>
       <td>{{p.description}}</td>
       <td>{{p.price}}</td>
-      <td><button class="btn btn-warning">Editar</button> </td>
-      <td><button class="btn btn-danger" (click)="deleteProductById(p.id)" >Eliminar</button>
+      <td><button class="btn btn-warning" [routerLink]="['/admin/product/update',p.id]">Editar</button> </td>
+      <td><button class="btn btn-danger" (click)="deleteProductById(p.id)" >Eliminar</button></td>
     </tr>
     </tbody>
   </table>

@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ProductService} from "../../services/product.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-product-add',
   templateUrl: './product-add.component.html',
-  styleUrl: './product-add.component.css'
+  styleUrls:  ['./product-add.component.css']
 })
 export class ProductAddComponent implements OnInit {
   id :number =0
@@ -17,13 +18,13 @@ export class ProductAddComponent implements OnInit {
   userId :number = 1;
   categoryId: string ='1'
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService, private router: Router, private activatedRoute: ActivatedRoute) {
 
   }
 
 
   ngOnInit(): void {
-
+      this.getProductById();
   }
 
   addProduct() {
@@ -39,7 +40,23 @@ export class ProductAddComponent implements OnInit {
     console.log(formData);
 
     this.productService.createProduct(formData).subscribe(
-      data => console.log(data),
-    )
+      data => {console.log(data);
+        this.router.navigate(['admin/product']);
+      }
+    );
+
+
   }
+
+  getProductById() {
+    this.activatedRoute.params.subscribe(
+      prod => {
+                let id = prod['id'];
+                if(id){
+                  console.log('el valor de la variable id: '+id);
+                }
+      }
+    );
+  }
+
 }
