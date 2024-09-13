@@ -8,6 +8,8 @@ import { HeaderAdminComponent } from './components/header-admin/header-admin.com
 import {Routes, RouterModule} from "@angular/router";
 import { ProductAddComponent } from './components/product-add/product-add.component';
 import {FormsModule} from "@angular/forms";
+import {ToastrModule} from "ngx-toastr";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -28,6 +30,9 @@ const routes: Routes = [
     BrowserModule,
     RouterModule.forRoot(routes),
     FormsModule,
+    ToastrModule.forRoot(),
+    BrowserModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     //httpClientModule deprecado
