@@ -11,12 +11,18 @@ import {FormsModule} from "@angular/forms";
 import {ToastrModule} from "ngx-toastr";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
+import { CategoryListComponent } from './components/category/category-list/category-list.component';
+import { CategoryAddComponent } from './components/category/category-add/category-add.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   {path: 'admin/product', component: ProductListComponent },
   {path: 'admin/product/productadd', component: ProductAddComponent },
   {path: 'admin/product/update/:id', component: ProductAddComponent },
+  {path: 'admin/category', component: CategoryListComponent },
+  {path: 'admin/category/add', component: CategoryAddComponent },
+  {path: 'admin/category/update/:id', component: CategoryAddComponent },
+
 ];
 
 @NgModule({
@@ -25,7 +31,9 @@ const routes: Routes = [
     AppComponent,
     ProductListComponent,
     HeaderAdminComponent,
-    ProductAddComponent
+    ProductAddComponent,
+    CategoryListComponent,
+    CategoryAddComponent
   ],
   imports: [
     BrowserModule,

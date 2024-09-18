@@ -3,6 +3,8 @@ import {HttpClient} from "@angular/common/http";
 import {ProductService} from "../../services/product.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
+import {Category} from "../../common/category";
+import {CategoryService} from "../../services/category.service";
 
 @Component({
   selector: 'app-product-add',
@@ -21,12 +23,19 @@ export class ProductAddComponent implements OnInit {
 
   selectFile! : File;
 
-  constructor(private productService: ProductService, private router: Router, private activatedRoute: ActivatedRoute, private toastrService: ToastrService) {
+  categories: Category[] =[];
+
+  constructor(private productService: ProductService,
+              private router: Router,
+              private activatedRoute: ActivatedRoute,
+              private toastrService: ToastrService,
+              private categoryService: CategoryService) {
 
   }
 
 
   ngOnInit(): void {
+      this.getCategories();
       this.getProductById();
   }
 
@@ -85,6 +94,14 @@ export class ProductAddComponent implements OnInit {
 
   onFileSelected(event: any) {
     this.selectFile = event.target.files[0];
+  }
+
+  getCategories(){
+    this.categoryService.getCategoryList().subscribe(
+      data => {
+        this.categories = data
+      }
+    )
   }
 
 }
