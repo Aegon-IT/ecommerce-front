@@ -2,6 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {ItemCart} from "../../../common/item-cart";
 import {CartService} from "../../../services/cart.service";
 import {UserService} from "../../../services/user.service";
+import {OrderProduct} from "../../../common/order-product";
+import {Order} from "../../../common/order";
+import {OrderState} from "../../../common/order-state";
+import {OrderService} from "../../../services/order.service";
 
 
 @Component({
@@ -17,16 +21,34 @@ export class SummaryOrderComponent implements OnInit {
    lastName: string = '';
    email: string = '';
    address: string = '';
+   orderProducts: OrderProduct[] = [];
+   userId: number = 1;
 
-  constructor(private cartService: CartService, private userService: UserService ) {
+  constructor(private cartService: CartService, private userService: UserService, private orderService:OrderService ) {
 
   }
 
   ngOnInit(): void {
     this.items = this.cartService.convertToListFromMap();
     this.totalCart = this.cartService.totalCart();
-    this.getUserById(1)
+    this.getUserById(this.userId)
   }
+
+  generateOrder() {
+    this.items.forEach(
+      item => {
+        let orderProduct = new OrderProduct(null, item.productId, item.quantity, item.price );
+        this.orderProducts.push(orderProduct);
+      });
+
+    let newOrder = new Order(null, new Date(), this.orderProducts, this.userId, OrderState.CANCELLED);
+    this.orderService.createOrder(newOrder).subscribe(
+      data =>{
+        console.log("Order created" + data.id);
+      }
+    );
+  }
+
 
   deleteItemCart(productId: number) {
     this.cartService.deleteItemCart(productId);
