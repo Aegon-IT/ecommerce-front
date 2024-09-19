@@ -13,6 +13,10 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
 import { CategoryListComponent } from './components/category/category-list/category-list.component';
 import { CategoryAddComponent } from './components/category/category-add/category-add.component';
+import { DetailProductComponent } from './components/cart/detail-product/detail-product.component';
+import { HeaderUserComponent } from './components/header-user/header-user.component';
+import { SummaryOrderComponent } from './components/orders/summary-order/summary-order.component';
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -22,6 +26,8 @@ const routes: Routes = [
   {path: 'admin/category', component: CategoryListComponent },
   {path: 'admin/category/add', component: CategoryAddComponent },
   {path: 'admin/category/update/:id', component: CategoryAddComponent },
+  {path: 'cart/detailproduct/:id', component: DetailProductComponent },
+  {path: 'cart/summary', component: SummaryOrderComponent },
 
 ];
 
@@ -33,14 +39,16 @@ const routes: Routes = [
     HeaderAdminComponent,
     ProductAddComponent,
     CategoryListComponent,
-    CategoryAddComponent
+    CategoryAddComponent,
+    DetailProductComponent,
+    HeaderUserComponent,
+    SummaryOrderComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     FormsModule,
     ToastrModule.forRoot(),
-    BrowserModule,
     BrowserAnimationsModule,
     SweetAlert2Module.forRoot()
 
