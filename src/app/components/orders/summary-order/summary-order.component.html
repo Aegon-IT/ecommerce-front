@@ -9,6 +9,7 @@
     Spring eCommerce <small>Resumen de la orden</small>
   </h1>
 
+  <!--Ver redireccion para que no se pierda el carrito-->
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a [routerLink]="['/']">Home</a></li>
     <li class="breadcrumb-item active">Orden</li>
@@ -45,6 +46,7 @@
                 <td>{{item.productName}}</td>
                 <td>{{item.price}}</td>
                 <td>{{item.quantity}}</td>
+                <td>{{item.productId}}</td>
                 <td>{{item.getTotalPriceItems()}}</td>
                 <td><button class="btn btn-danger" (click)="deleteItemCart(item.productId)" >Quitar</button> </td>
               </tr>

@@ -16,6 +16,7 @@ import { CategoryAddComponent } from './components/category/category-add/categor
 import { DetailProductComponent } from './components/cart/detail-product/detail-product.component';
 import { HeaderUserComponent } from './components/header-user/header-user.component';
 import { SummaryOrderComponent } from './components/orders/summary-order/summary-order.component';
+import { PaymentSuccessComponent } from './components/payment-success/payment-success.component';
 
 
 const routes: Routes = [
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path: 'admin/category/update/:id', component: CategoryAddComponent },
   {path: 'cart/detailproduct/:id', component: DetailProductComponent },
   {path: 'cart/summary', component: SummaryOrderComponent },
+  {path: 'payment/success', component: PaymentSuccessComponent },
 
 ];
 
@@ -42,7 +44,8 @@ const routes: Routes = [
     CategoryAddComponent,
     DetailProductComponent,
     HeaderUserComponent,
-    SummaryOrderComponent
+    SummaryOrderComponent,
+    PaymentSuccessComponent
   ],
   imports: [
     BrowserModule,

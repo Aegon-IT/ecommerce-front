@@ -6,6 +6,8 @@ import {OrderProduct} from "../../../common/order-product";
 import {Order} from "../../../common/order";
 import {OrderState} from "../../../common/order-state";
 import {OrderService} from "../../../services/order.service";
+import {PaymentService} from "../../../services/payment.service";
+import {DataPayment} from "../../../common/data-payment";
 
 
 @Component({
@@ -24,7 +26,10 @@ export class SummaryOrderComponent implements OnInit {
    orderProducts: OrderProduct[] = [];
    userId: number = 1;
 
-  constructor(private cartService: CartService, private userService: UserService, private orderService:OrderService ) {
+  constructor(private cartService:CartService,
+              private userService:UserService,
+              private orderService:OrderService,
+              private paymentService:PaymentService) {
 
   }
 
@@ -41,10 +46,30 @@ export class SummaryOrderComponent implements OnInit {
         this.orderProducts.push(orderProduct);
       });
 
+    for (let value of this.orderProducts) {
+      console.log("Elementos del array");
+      console.log(value.productId);
+    }
+
     let newOrder = new Order(null, new Date(), this.orderProducts, this.userId, OrderState.CANCELLED);
+    console.log("Imprimiendo orden");
+    console.log(newOrder);
+    console.log("orden impresa");
     this.orderService.createOrder(newOrder).subscribe(
       data =>{
         console.log("Order created" + data.id);
+      }
+    );
+
+    let urlPayment;
+    let dataPayment = new DataPayment('PAYPAL', this.totalCart.toString(), 'USD', 'COMPRA');
+
+
+    this.paymentService.getUrlPaypalPayment(dataPayment).subscribe(
+      data => {
+        urlPayment = data.url
+        console.log('Respuesta exitosa: ', urlPayment);
+        window.location.href = urlPayment;
       }
     );
   }

@@ -4,4 +4,8 @@ export class OrderProduct {
               public productId: number,
               public quantity: number,
               public price: number) {}
+
+  toString(): string {
+    return `Product ID: ${this.productId}, Quantity: ${this.quantity}, Price: ${this.price}`;
+  }
 }

@@ -18,4 +18,14 @@ export class Order {
     }
   }
 
+  // Método toString para la representación en formato de cadena
+  toString(): string {
+    return `Order ID: ${this.id},
+            Date: ${this.dateCreate.toISOString()},
+            User ID: ${this.userId},
+            Order State: ${this.orderState},
+            Total: ${this.getTotal()},
+            Products: ${this.orderProduct.map(op => op.toString()).join(', ')}`;
+  }
+
 }
